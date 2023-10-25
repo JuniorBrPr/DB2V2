@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Dao voor reizigers
+ *
  * @author HBO-ICT
  */
 public class MySQLReizigers extends MySQL<Reiziger> {
@@ -47,30 +48,22 @@ public class MySQLReizigers extends MySQL<Reiziger> {
                     LEFT JOIN reiziger AS r on reiziger.hoofd_reiziger = r.code;
                 """;
 
-        // Als je nog geen query hebt ingevuld breek dan af om een error te voorkomen.
-        if (sql.equals(""))
-            return;
-
         try {
-            // Roep de methode aan in de parent class en geen je SQL door
             PreparedStatement ps = getStatement(sql);
-
-            //Voer je query uit en stop het antwoord in een result set
             ResultSet rs = executeSelectPreparedStatement(ps);
 
-            // Loop net zolang als er records zijn
             while (rs.next()) {
-                String reizigersCode = rs.getString("reizigerCode");
-                String voornaam = rs.getString("voornaam");
-                String achternaam = rs.getString("achternaam");
-                String adres = rs.getString("adres");
-                String postcode = rs.getString("postcode");
-                String plaats = rs.getString("plaats");
-                String land = rs.getString("land");
-                String hoofdreiziger = rs.getString("hoofdreiziger");
-
-                // Maak model aan en voeg toe aan arraylist
-                reizigers.add(new Reiziger(reizigersCode, voornaam, achternaam, adres, postcode, plaats, land, hoofdreiziger));
+                Reiziger reiziger = new Reiziger();
+                reiziger.setCode(rs.getString("reizigerCode"));
+                reiziger.setVoornaam(rs.getString("voornaam"));
+                reiziger.setAchternaam(rs.getString("achternaam"));
+                reiziger.setAdres(rs.getString("adres"));
+                reiziger.setPostcode(rs.getString("postcode"));
+                reiziger.setPlaats(rs.getString("plaats"));
+                reiziger.setLand(rs.getString("land"));
+                reiziger.setHoofdreiziger(rs.getString("hoofdreiziger"));
+                reizigers.add(reiziger);
+//                System.out.println(reiziger.toJson());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,6 +72,7 @@ public class MySQLReizigers extends MySQL<Reiziger> {
 
     /**
      * Geen alle reizigers in de arraylist terug
+     *
      * @return arraylist met reizigers
      */
     @Override
@@ -88,6 +82,7 @@ public class MySQLReizigers extends MySQL<Reiziger> {
 
     /**
      * Haal 1 reiziger op
+     *
      * @return reiziger object
      */
     @Override
@@ -97,6 +92,7 @@ public class MySQLReizigers extends MySQL<Reiziger> {
 
     /**
      * Voeg reiziger toe
+     *
      * @param reiziger reiziger
      */
     @Override
@@ -106,6 +102,7 @@ public class MySQLReizigers extends MySQL<Reiziger> {
 
     /**
      * Update reiziger
+     *
      * @param reiziger reiziger
      */
     @Override
@@ -115,6 +112,7 @@ public class MySQLReizigers extends MySQL<Reiziger> {
 
     /**
      * Verwijder reiziger
+     *
      * @param object reiziger
      */
     @Override

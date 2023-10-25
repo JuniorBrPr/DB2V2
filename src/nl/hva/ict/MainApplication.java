@@ -13,6 +13,7 @@ import nl.hva.ict.data.MySQL.*;
 
 /**
  * Main class met applicatie logica
+ *
  * @author Junior Javier Brito Perez, 500906870
  */
 public class MainApplication extends Application {
@@ -23,12 +24,13 @@ public class MainApplication extends Application {
     private static final String MYSQL_HOST = "jdbc:mysql://localhost:3306/big_five_safari?autoReconnect=" +
             "true&serverTimezone=Europe/Amsterdam&useSSL=False";
     private static final String MYSQL_USERNAME = "dbConn";
-     private static final String MYSQL_PASSWORD = "MySql15@";
+    private static final String MYSQL_PASSWORD = "MySql15@";
 
     //Mongo NoSQL
-    private static final String NOSQL_HOST = ""; // Vul hier je MongoDB gegevens in. Iets met mongodb+srv://......
-    private static final String NOSQL_DATABASE = ""; // Vul hier je database gegevens in;
-    
+    private static final String NOSQL_HOST =
+            "mongodb+srv://safari:safari@cluster0.o89biqn.mongodb.net/?retryWrites=true&w=majority";
+    private static final String NOSQL_DATABASE = "big_five_safari";
+
     //Data models
     private static final MySQLReizigers mySQLReizigers = new MySQLReizigers();
     private static final MySQLLodge mySQLLodge = new MySQLLodge();
@@ -100,6 +102,7 @@ public class MainApplication extends Application {
     /**
      * Opstarten JavaFX applicatie.
      * Kijk voor meer informatie over JavaFX ook bij OOP2
+     *
      * @param stage de stage welke gebruikt wordt
      */
     @Override

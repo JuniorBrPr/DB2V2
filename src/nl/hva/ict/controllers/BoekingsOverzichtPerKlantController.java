@@ -42,7 +42,7 @@ public class BoekingsOverzichtPerKlantController extends Controller {
         Reiziger selectedReiziger = (Reiziger) boekingsoverzichtPerKlantView.getComboBox().getSelectionModel().getSelectedItem();
 
         // Haal data op van deze reiziger
-        ObservableList<BoekingsOverzicht> BoekingsOverzichtList = FXCollections.observableArrayList(MainApplication.getMySQLBoekingsOverzicht().getBoekingVoor(selectedReiziger.getReizigersCode()));
+        ObservableList<BoekingsOverzicht> BoekingsOverzichtList = FXCollections.observableArrayList(MainApplication.getMySQLBoekingsOverzicht().getBoekingVoor(selectedReiziger.getCode()));
 
         // Zet in listview
         boekingsoverzichtPerKlantView.getBoekingsOverzichtListView().setItems(BoekingsOverzichtList);
